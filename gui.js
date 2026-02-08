@@ -703,6 +703,9 @@
     "I'm the same guy who made all kinds of random but actually useful stuff like autoclickers, custom GUIs, tab cloakers, random tools, etc.<br><br>" +
     "Spanish Helper started as another one of those \"why not\" projects. I wanted something lightweight, fast, and fun to use while learning or practicing Spanish.<br><br>" +
     "This tool isn’t meant to replace Google Translate, DeepL, or any professional translator. It’s just a clean, simple learning tool you can open anytime, even if it’s not perfect.<br><br>" +
+    "If you enjoy using it or it helps you learn, that means a lot to me :).<br><br>" + 
+    "Thanks for supporting my random lil project ❤️.<br><br>" + 
+
     "More tools coming soon... stay tuned :)!";
   aboutPanel.appendChild(aboutHeader);
   aboutPanel.appendChild(aboutBody);
@@ -940,20 +943,61 @@ helpPanel.appendChild(helpText);
           <p>This is approximate and rule-based. It’s meant to give you a quick feel for the word, not a perfect dictionary entry.</p>
         </div>
 
-        <div class="section"><h2>Grammar Mode (Detailed)</h2>
-          <p>Grammar Mode tries to highlight the structure of the sentence so you can see how the pieces fit together. It looks for:</p>
-          <ul>
-            <li><b>Subjects:</b> Subject pronouns (like <code>yo</code>, <code>tú</code>, <code>él</code>) and sometimes implied subjects based on verb endings.</li>
-            <li><b>Verbs:</b> Words that look like verbs based on endings (<code>-ar</code>, <code>-er</code>, <code>-ir</code>), conjugated forms, and participles.</li>
-            <li><b>Nouns:</b> Words that are likely nouns, excluding pronouns, articles, prepositions, and conjunctions.</li>
-            <li><b>Adjectives:</b> Words that look like adjectives based on common endings and patterns.</li>
-            <li><b>Adverbs:</b> Common adverbs and words ending in <code>-mente</code>.</li>
-            <li><b>Articles:</b> Definite and indefinite articles like <code>el</code>, <code>la</code>, <code>un</code>, <code>una</code>, etc.</li>
-            <li><b>Prepositions:</b> Common Spanish prepositions like <code>a</code>, <code>de</code>, <code>en</code>, <code>por</code>, <code>para</code>, etc.</li>
-            <li><b>Conjunctions:</b> Words that connect clauses, like <code>y</code>, <code>o</code>, <code>pero</code>, <code>aunque</code>, etc.</li>
-          </ul>
-          <p>It’s still heuristic and can misclassify words, especially in complex sentences. Use it as a guide, not a strict grammar judge.</p>
-        </div>
+<div class="section">
+  <h2>Grammar Mode (Detailed)</h2>
+
+  <p>Grammar Mode tries to highlight the structure of the sentence so you can see how the pieces fit together. It looks for:</p>
+
+  <ul>
+    <li><b>Subjects:</b> Subject pronouns (like <code>yo</code>, <code>tú</code>, <code>él</code>) and sometimes implied subjects based on verb endings.</li>
+
+    <li><b>Verbs:</b> Words that look like verbs based on endings (<code>-ar</code>, <code>-er</code>, <code>-ir</code>), conjugated forms, irregular forms, gerunds, participles, and other common verb patterns.</li>
+
+    <li><b>Nouns:</b> Words that are likely nouns, excluding pronouns, articles, prepositions, and conjunctions. Includes common noun endings like <code>-ción</code>, <code>-dad</code>, <code>-umbre</code>, etc.</li>
+
+    <li><b>Adjectives:</b> Words that look like adjectives based on common endings (<code>-o</code>, <code>-a</code>, <code>-os</code>, <code>-as</code>) and known descriptive words.</li>
+
+    <li><b>Adverbs:</b> Common adverbs and words ending in <code>-mente</code> (like <code>rápidamente</code>, <code>fácilmente</code>).</li>
+
+    <li><b>Articles:</b> Definite and indefinite articles like <code>el</code>, <code>la</code>, <code>los</code>, <code>las</code>, <code>un</code>, <code>una</code>, etc.</li>
+
+    <li><b>Prepositions:</b> Common Spanish prepositions like <code>a</code>, <code>de</code>, <code>en</code>, <code>por</code>, <code>para</code>, <code>con</code>, etc.</li>
+
+    <li><b>Conjunctions:</b> Words that connect clauses, like <code>y</code>, <code>o</code>, <code>pero</code>, <code>aunque</code>, etc.</li>
+  </ul>
+
+  <p>It’s still heuristic and can misclassify words, especially in complex sentences. Use it as a guide, not a strict grammar judge.</p>
+
+  
+  <h3>Meaning of Grammar Labels</h3>
+
+  <ul>
+    <li><b>implied</b> — The verb ending suggests the subject even if it isn’t written.  
+      Example: <code>como</code> implies <code>yo</code>.</li>
+
+    <li><b>infinitive</b> — The base form of a verb (<code>hablar</code>, <code>comer</code>, <code>vivir</code>).  
+      Often used after <code>voy a</code>, <code>quiero</code>, <code>puedo</code>, <code>tengo que</code>, etc.</li>
+
+    <li><b>gerund</b> — The “-ing” form in Spanish (<code>hablando</code>, <code>comiendo</code>, <code>viviendo</code>).  
+      Used for ongoing actions like <code>estoy hablando</code>.</li>
+
+    <li><b>participle</b> — Used in perfect tenses (<code>he hecho</code>, <code>hemos terminado</code>).  
+      Often ends in <code>-ado</code>, <code>-ido</code>, <code>-to</code>, <code>-so</code>, <code>-cho</code>.</li>
+
+    <li><b>preterite</b> — Completed past action (<code>comí</code>, <code>habló</code>, <code>fueron</code>).  
+      Used for events with a clear beginning and end.</li>
+
+    <li><b>imperfect</b> — Ongoing or repeated past action (<code>hablaba</code>, <code>comía</code>).  
+      Used for descriptions, habits, or background actions.</li>
+
+    <li><b>future</b> — Will happen (<code>hablaré</code>, <code>comerás</code>).  
+      Often interchangeable with <code>ir a + infinitive</code>.</li>
+
+    <li><b>conditional</b> — Would happen (<code>hablaría</code>, <code>comerías</code>).  
+      Used for polite requests, hypotheticals, and “would” statements.</li>
+  </ul>
+
+</div>
 
         <div class="section"><h2>Shortcuts</h2>
           <ul>
@@ -1242,139 +1286,364 @@ helpPanel.appendChild(helpText);
     else vocabCatEl.textContent = "unknown";
   }
 
-  // ---------------------------
-  // Grammar analysis
-  // ---------------------------
-  function updateGrammarInfo(text) {
-    const trimmed = (text || "").trim();
-    if (!trimmed) {
-      gramSubjectsEl.textContent = "—";
-      gramVerbsEl.textContent = "—";
-      gramNounsEl.textContent = "—";
-      gramAdjsEl.textContent = "—";
-      gramAdvsEl.textContent = "—";
-      gramArtsEl.textContent = "—";
-      gramPrepsEl.textContent = "—";
-      gramConjsEl.textContent = "—";
-      return;
-    }
-    const words = trimmed
-      .split(/\s+/)
-      .map((w) => w.replace(/[.,!?;:]/g, ""))
-      .filter(Boolean);
-    const lowerWords = words.map((w) => w.toLowerCase());
-    const subjects = [];
-    const verbs = [];
-    const nouns = [];
-    const adjs = [];
-    const advs = [];
-    const arts = [];
-    const preps = [];
-    const conjs = [];
-    words.forEach((w, i) => {
-      const lw = lowerWords[i];
-      if (!lw) return;
-      if (subjectPronouns.includes(lw)) {
-        subjects.push(w);
-        return;
-      }
-      if (articlesDef.includes(lw) || articlesIndef.includes(lw)) {
-        arts.push(w);
-        return;
-      }
-      if (prepositions.includes(lw)) {
-        preps.push(w);
-        return;
-      }
-      if (conjunctions.includes(lw)) {
-        conjs.push(w);
-        return;
-      }
+// ---------------------------
+// Grammar analysis (rewritten)
+// ---------------------------
 
-      // Adverbs
-      if (commonAdverbs.includes(lw)) {
-        advs.push(w);
-        return;
-      }
+// Basic helpers
+function normalizeWord(w) {
+  return w
+    .toLowerCase()
+    .replace(/[“”"«»()¿?¡!.,;:]/g, "")
+    .trim();
+}
 
-      if (lw.endsWith("mente")) {
-        advs.push(w);
-        return;
-      }
+function addUniqueOrdered(list, value) {
+  if (!value) return;
+  if (!list.includes(value)) list.push(value);
+}
 
-      if (["me", "te", "se", "nos", "os"].includes(lw)) {
-        if (words[i + 1] && isLikelyVerb(words[i + 1])) {
-          verbs.push(w + " " + words[i + 1]);
-          return;
-        }
-      }
+// Lexical categories
+// Core word lists for grammar detection
+const PRONOUNS = [
+  "yo","tú","vos","él","ella","ello","usted","nosotros","nosotras",
+  "vosotros","vosotras","ellos","ellas","ustedes",
+  "me","te","se","nos","os","lo","la","los","las","le","les","mí","ti","sí","su","sus"
+];
 
-      if (
-        [
-          "ha",
-          "he",
-          "has",
-          "han",
-          "hemos",
-          "está",
-          "están",
-          "estoy",
-          "estás",
-          "estamos"
-        ].includes(lw)
-      ) {
-        if (words[i + 1] && isLikelyVerb(words[i + 1])) {
-          verbs.push(w + " " + words[i + 1]);
-          return;
-        }
-      }
-      if (isLikelyVerb(w)) {
-        verbs.push(w);
-        return;
-      }
-      if (isLikelyAdj(w)) {
-        adjs.push(w);
-        return;
-      }
-      if (isLikelyNoun(w)) {
-        nouns.push(w);
-        return;
-      }
-    });
-    if (!subjects.length && verbs.length) {
-      const inferred = [];
-      verbs.forEach((v) => {
-        const lv = v.toLowerCase();
-        if (lv.endsWith("o")) inferred.push("yo (implied)");
-        else if (lv.endsWith("as") || lv.endsWith("es")) inferred.push("tú (implied)");
-        else if (lv.endsWith("a") || lv.endsWith("e"))
-          inferred.push("él/ella/usted (implied)");
-        else if (
-          lv.endsWith("amos") ||
-          lv.endsWith("emos") ||
-          lv.endsWith("imos")
-        )
-          inferred.push("nosotros (implied)");
-        else if (
-          lv.endsWith("áis") ||
-          lv.endsWith("éis") ||
-          lv.endsWith("ís")
-        )
-          inferred.push("vosotros (implied)");
-        else if (lv.endsWith("an") || lv.endsWith("en"))
-          inferred.push("ellos/ellas/ustedes (implied)");
-      });
-      if (inferred.length) subjects.push(...Array.from(new Set(inferred)));
-    }
-    gramSubjectsEl.textContent = subjects.length ? subjects.join(", ") : "none detected";
-    gramVerbsEl.textContent = verbs.length ? verbs.join(", ") : "none detected";
-    gramNounsEl.textContent = nouns.length ? nouns.join(", ") : "none detected";
-    gramAdjsEl.textContent = adjs.length ? adjs.join(", ") : "none detected";
-    gramAdvsEl.textContent = advs.length ? advs.join(", ") : "none detected";
-    gramArtsEl.textContent = arts.length ? arts.join(", ") : "none detected";
-    gramPrepsEl.textContent = preps.length ? preps.join(", ") : "none detected";
-    gramConjsEl.textContent = conjs.length ? conjs.join(", ") : "none detected";
+const ARTICLES = ["el","la","los","las","un","una","unos","unas","lo"];
+
+const PREPOSITIONS = [
+  "a","ante","bajo","cabe","con","contra","de","desde","en","entre",
+  "hacia","hasta","para","por","según","sin","sobre","tras","durante","mediante"
+];
+
+const CONJUNCTIONS = [
+  "y","e","ni","o","u","pero","aunque","sino","que","si","mientras","porque","cuando","ya"
+];
+
+const COMMON_ADVERBS = [
+  "muy","poco","mucho","bastante","demasiado","bien","mal","casi",
+  "siempre","nunca","jamás","ayer","hoy","mañana","anoche","tarde",
+  "temprano","después","luego","antes","aquí","allí","allá","cerca",
+  "lejos","arriba","abajo","dentro","fuera","rápidamente","lentamente","claramente"
+];
+
+const COMMON_ADJECTIVES = [
+  "grande","pequeño","pequeña","pequeños","pequeñas",
+  "alto","alta","bajo","baja",
+  "nuevo","nueva","viejo","vieja",
+  "rojo","roja","azul","verde",
+  "local","interesante","importante","difícil","fácil",
+  "rápido","rápida","lento","lenta","feliz",
+  "antiguo","antigua","complicada","complicado",
+  "divertido","divertida","tranquilo","tranquila","largo","larga","fuerte","grandes"
+];
+
+const NEVER_NOUN = new Set([
+  ...PRONOUNS,
+  ...ARTICLES,
+  ...PREPOSITIONS,
+  ...CONJUNCTIONS,
+  ...COMMON_ADVERBS
+]);
+
+function isPronoun(w) {
+  return PRONOUNS.includes(w);
+}
+
+function isArticle(w) {
+  return ARTICLES.includes(w);
+}
+
+function isPreposition(w) {
+  return PREPOSITIONS.includes(w);
+}
+
+function isConjunction(w) {
+  return CONJUNCTIONS.includes(w);
+}
+
+function isAdverb(w) {
+  if (COMMON_ADVERBS.includes(w)) return true;
+  if (w.endsWith("mente") && w.length > 6) return true;
+  return false;
+}
+
+function isSubjectPronoun(w) {
+  const subs = [
+    "yo", "tú", "vos", "él", "ella", "usted",
+    "nosotros", "nosotras", "vosotros", "vosotras",
+    "ellos", "ellas", "ustedes"
+  ];
+  return subs.includes(w);
+}
+
+// Verb detection + tense
+function isInfinitive(w) {
+  return w.length > 3 && (w.endsWith("ar") || w.endsWith("er") || w.endsWith("ir"));
+}
+
+function isGerund(w) {
+  return w.endsWith("ando") || w.endsWith("iendo") || w.endsWith("yendo");
+}
+
+function isParticiple(w) {
+  return w.endsWith("ado") || w.endsWith("ido") || w.endsWith("to") || w.endsWith("so") || w.endsWith("cho");
+}
+
+function detectSimpleTense(w) {
+  // Very rough but safe-ish
+  if (isInfinitive(w)) return "infinitive";
+  if (isGerund(w)) return "gerund";
+  if (isParticiple(w)) return "participle";
+
+  // Future / conditional
+  if (w.endsWith("ré") || w.endsWith("rás") || w.endsWith("rá") || w.endsWith("remos") || w.endsWith("réis") || w.endsWith("rán")) {
+    return "future";
   }
+  if (w.endsWith("ría") || w.endsWith("rías") || w.endsWith("ríamos") || w.endsWith("ríais") || w.endsWith("rían")) {
+    return "conditional";
+  }
+
+  // Very rough present / preterite / imperfect
+  if (/(o|as|a|amos|áis|an|es|e|emos|éis|en|imos|ís)$/.test(w)) {
+    return "present (likely)";
+  }
+  if (/(é|aste|ó|amos|asteis|aron|í|iste|ió|imos|isteis|ieron)$/.test(w)) {
+    return "preterite (likely)";
+  }
+  if (/(aba|abas|ábamos|abais|aban|ía|ías|íamos|íais|ían)$/.test(w)) {
+    return "imperfect (likely)";
+  }
+
+  return "verb (unknown tense)";
+}
+
+// ------------------------
+// VERB DETECTION
+// ------------------------
+function isVerbLike(w) {
+  const irregular = [
+    "soy","eres","es","somos","sois","son",
+    "estoy","estás","está","estamos","estáis","están",
+    "fui","fuiste","fue","fuimos","fuisteis","fueron",
+    "iba","ibas","iba","íbamos","ibais","iban",
+    "voy","vas","va","vamos","vais","van",
+    "tengo","tienes","tiene","tenemos","tenéis","tienen",
+    "tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron",
+    "puedo","puedes","puede","podemos","podéis","pueden",
+    "hago","haces","hace","hacemos","hacéis","hacen",
+    "digo","dices","dice","decimos","decís","dicen",
+    "quiero","quieres","quiere","queremos","queréis","quieren",
+    "debo","debes","debe","debemos","debéis","deben",
+    "dijo","dije","dijiste","dijeron","haré","haría","había","habrá","habrían"
+  ];
+  if (irregular.includes(w)) return true;
+
+  if (isInfinitive(w)) return true;
+  if (isGerund(w)) return true;
+  if (isParticiple(w)) return true;
+
+  // Preterite
+  if (/(é|aste|ó|amos|asteis|aron)$/.test(w) && w.length > 4) return true;
+  if (/(í|iste|ió|imos|isteis|ieron)$/.test(w) && w.length > 4) return true;
+
+  // Imperfect
+  if (/(aba|abas|ábamos|abais|aban)$/.test(w) && w.length > 4) return true;
+  if (/(ía|ías|íamos|íais|ían)$/.test(w) && w.length > 4) return true;
+
+  // Present -o
+  if (
+    w.endsWith("o") &&
+    w.length > 3 &&
+    !isAdjective(w) &&
+    !/(ero|ano|ino|oro|ono|eño|ario|ismo|metro|doro|dero|erno)$/.test(w)
+  ) {
+    return true;
+  }
+
+  // Present -as / -es / -a / -e
+  if (
+    /(as|es|a|e)$/.test(w) &&
+    w.length > 4 &&
+    !isAdjective(w) &&
+    !NEVER_NOUN.has(w)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+// ------------------------
+// ADJECTIVES
+// ------------------------
+function isAdjective(w) {
+  if (COMMON_ADJECTIVES.includes(w)) return true;
+
+  if (/(ble|nte|ntes)$/.test(w)) return true;
+  if (/(oso|osa|osos|osas)$/.test(w)) return true;
+
+  return false;
+}
+
+// ------------------------
+// NOUNS
+// ------------------------
+function isNoun(w) {
+  const nounEndings = [
+    "ción","sión","dad","tad","tud","umbre","aje",
+    "ista","or","ora","ero","era","ez","eza","miento","mente"
+  ];
+  if (nounEndings.some(e => w.endsWith(e))) return true;
+
+  // Exclude known non-nouns
+  if (
+    isPronoun(w) ||
+    isArticle(w) ||
+    isPreposition(w) ||
+    isConjunction(w) ||
+    isAdverb(w) ||
+    isAdjective(w)
+  ) {
+    return false;
+  }
+
+  // If it's a verb, do NOT treat it as a noun
+  if (isVerbLike(w)) return false;
+
+  // Default: unknown words of length > 2 are nouns
+  return w.length > 2;
+}
+
+// Implied subject from verb ending
+function inferSubjectFromVerb(w) {
+  // Only infer if it's truly a verb
+  if (!isVerbLike(w)) return null;
+
+  if (/(o)$/.test(w)) return "yo (implied)";
+  if (/(as|es)$/.test(w)) return "tú (implied)";
+  if (/(a|e|ó|ió)$/.test(w)) return "él/ella/usted (implied)";
+  if (/(amos|emos|imos)$/.test(w)) return "nosotros (implied)";
+  if (/(áis|éis|ís)$/.test(w)) return "vosotros (implied)";
+  if (/(an|en|aron|ieron)$/.test(w)) return "ellos/ellas/ustedes (implied)";
+
+  return null;
+}
+
+// Main analysis
+function updateGrammarInfo(text) {
+  const rawWords = text.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g) || [];
+  const words = rawWords.map(w => normalizeWord(w)).filter(Boolean);
+
+  const subjects = [];
+  const verbs = []; // {form, tense}
+  const nouns = [];
+  const adjectives = [];
+  const adverbs = [];
+  const articles = [];
+  const prepositions = [];
+  const conjunctions = [];
+
+// First pass: classify in order
+for (let i = 0; i < words.length; i++) {
+  const wNorm = words[i];
+  const wOrig = rawWords[i];
+
+  if (!wNorm) continue;
+
+  // Subject pronouns
+  if (isSubjectPronoun(wNorm)) {
+    addUniqueOrdered(subjects, wOrig);
+    continue;
+  }
+
+  // Articles
+  if (isArticle(wNorm)) {
+    addUniqueOrdered(articles, wOrig);
+    continue;
+  }
+
+  // Prepositions
+  if (isPreposition(wNorm)) {
+    addUniqueOrdered(prepositions, wOrig);
+    continue;
+  }
+
+  // Conjunctions
+  if (isConjunction(wNorm)) {
+    addUniqueOrdered(conjunctions, wOrig);
+    continue;
+  }
+
+  // Adverbs
+  if (isAdverb(wNorm)) {
+    addUniqueOrdered(adverbs, wOrig);
+    continue;
+  }
+
+  // Adjectives — MUST come BEFORE verbs
+  if (isAdjective(wNorm)) {
+    addUniqueOrdered(adjectives, wOrig);
+    continue;
+  }
+
+  // Nouns — MUST come BEFORE verbs
+  if (isNoun(wNorm)) {
+    addUniqueOrdered(nouns, wOrig);
+    continue;
+  }
+
+  // Verbs — MUST come AFTER nouns and adjectives
+if (isVerbLike(wNorm)) {
+  const tense = detectSimpleTense(wNorm);
+  verbs.push({ form: wOrig, tense });
+
+  const implied = inferSubjectFromVerb(wNorm);
+
+  if (implied) {
+    const impliedBase = implied.split(" ")[0].toLowerCase(); // "yo", "tú", etc.
+    const hasExplicit = subjects.some(s =>
+      s.toLowerCase().startsWith(impliedBase)
+    );
+    if (!hasExplicit) {
+      addUniqueOrdered(subjects, implied);
+    }
+  }
+
+  continue;
+}
+
+  // Fallback: treat as noun
+  if (wNorm.length > 2) {
+    addUniqueOrdered(nouns, wOrig);
+  }
+}
+
+  // Build output HTML (in order, comma-separated)
+  function fmt(list) {
+    return list.length ? list.join(", ") : "none detected";
+  }
+
+  const verbsFormatted = verbs.length
+    ? verbs.map(v => v.form + " (" + v.tense + ")").join(", ")
+    : "none detected";
+
+  const html =
+    "<b>Subjects:</b> " + fmt(subjects) + "<br>" +
+    "<b>Verbs:</b> " + verbsFormatted + "<br>" +
+    "<b>Nouns:</b> " + fmt(nouns) + "<br>" +
+    "<b>Adjectives:</b> " + fmt(adjectives) + "<br>" +
+    "<b>Adverbs:</b> " + fmt(adverbs) + "<br>" +
+    "<b>Articles:</b> " + fmt(articles) + "<br>" +
+    "<b>Prepositions:</b> " + fmt(prepositions) + "<br>" +
+    "<b>Conjunctions:</b> " + fmt(conjunctions);
+
+  // Whatever element you were using before for grammar output:
+  // e.g. grammarBody.innerHTML = html;
+  grammarBody.innerHTML = html;
+}
 
   // ---------------------------
   // Click word in output -> vocab + definition
@@ -1614,16 +1883,13 @@ try {
   document.addEventListener("keydown", function (e) {
     if (!document.body.contains(overlay)) return;
 
-    // Esc — clear everything (input, output, analysis)
-    if (e.key === "Escape") {
-      e.preventDefault();
-      input.value = "";
-      output.value = "";
-      updateVocabInfo("");
-      updateGrammarInfo("");
-      setStatus("Cleared with Esc.", "#888");
-      return;
-    }
+// Esc (closes GUI completely)
+if (e.key === "Escape") {
+  e.preventDefault();
+  box.remove();
+  overlay.remove();
+  return;
+}
 
     // Ctrl+Shift+E — hide/unhide GUI
     if ((e.key === "e" || e.key === "E") && e.shiftKey && (e.ctrlKey || e.metaKey)) {
