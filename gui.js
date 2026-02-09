@@ -1,3 +1,5 @@
+https://raw.githubusercontent.com/Annoying-Child-Is-King/Spanish-Learner/refs/heads/main/gui.js
+
 (function () {
   // Prevent double-loading
   if (window.__spanish_tool_opened) {
@@ -1287,7 +1289,7 @@ helpPanel.appendChild(helpText);
   }
 
 // ---------------------------
-// Grammar analysis (strict)
+// Grammar analysis (strict, rewritten)
 // ---------------------------
 
 // Basic helpers
@@ -1372,12 +1374,11 @@ function isAdverb(w) {
 }
 
 function isAdjective(w) {
-  // Known adjectives list
   if (COMMON_ADJECTIVES.includes(w)) return true;
   return /(al|ar|ante|ente|ivo|iva|ivos|ivas|oso|osa|osos|osas)$/.test(w);
 }
 
-// Verb detection + tense (strict-ish)
+// Verb detection + tense
 function isInfinitive(w) {
   return w.length > 3 && (w.endsWith("ar") || w.endsWith("er") || w.endsWith("ir"));
 }
@@ -1394,7 +1395,7 @@ const IRREGULAR_VERBS = new Set([
   "soy","eres","es","somos","sois","son",
   "estoy","estás","está","estamos","estáis","están",
   "fui","fuiste","fue","fuimos","fuisteis","fueron",
-  "iba","ibas","iba","íbamos","ibais","iban",
+  "iba","ibas","íbamos","ibais","iban",
   "voy","vas","va","vamos","vais","van",
   "tengo","tienes","tiene","tenemos","tenéis","tienen",
   "tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron",
@@ -1410,27 +1411,22 @@ function isVerbLike(w) {
   if (IRREGULAR_VERBS.has(w)) return true;
   if (isInfinitive(w) || isGerund(w) || isParticiple(w)) return true;
 
-  // Strong present-tense detection for common verbs
-  if (/(o|as|es)$/.test(w) && w.length > 4) return true;
-
-  // Finite verb endings (strict: require length > 4)
+  // Finite verb endings (require length > 4)
   if (/(é|aste|ó|amos|asteis|aron)$/.test(w) && w.length > 4) return true;
   if (/(í|iste|ió|imos|isteis|ieron)$/.test(w) && w.length > 4) return true;
   if (/(aba|abas|ábamos|abais|aban)$/.test(w) && w.length > 4) return true;
   if (/(ía|ías|íamos|íais|ían)$/.test(w) && w.length > 4) return true;
 
-  // Present tense endings (very cautious)
+  // Present tense endings (cautious)
   if (w.length > 4) {
-
-    // Block plural nouns/adjectives ending in -as / -es
+    // Block plural nouns/adjectives ending in -as / -es that are not infinitives
     if (/(as|es)$/.test(w) && !/(ar|er|ir)$/.test(w)) return false;
 
     // Block common noun endings that end in -o
     if (/(ro|rro|ero|oro|uro|ino|ano|ono)$/.test(w)) return false;
 
-    // Real verb endings
-    if (w.endsWith("o")) return true;        // yo form
-    if (/(as|es)$/.test(w)) return true;     // tú form
+    if (w.endsWith("o")) return true;        // yo
+    if (/(as|es)$/.test(w)) return true;     // tú
   }
 
   return false;
@@ -1441,21 +1437,28 @@ function detectSimpleTense(w) {
   if (isGerund(w)) return "gerund";
   if (isParticiple(w)) return "participle";
 
-  if (w.endsWith("ré") || w.endsWith("rás") || w.endsWith("rá") ||
-      w.endsWith("remos") || w.endsWith("réis") || w.endsWith("rán")) {
+  if (
+    w.endsWith("ré") || w.endsWith("rás") || w.endsWith("rá") ||
+    w.endsWith("remos") || w.endsWith("réis") || w.endsWith("rán")
+  ) {
     return "future";
   }
-  if (w.endsWith("ría") || w.endsWith("rías") || w.endsWith("ríamos") ||
-      w.endsWith("ríais") || w.endsWith("rían")) {
+
+  if (
+    w.endsWith("ría") || w.endsWith("rías") || w.endsWith("ríamos") ||
+    w.endsWith("ríais") || w.endsWith("rían")
+  ) {
     return "conditional";
   }
 
   if (/(o|as|a|amos|áis|an|es|e|emos|éis|en|imos|ís)$/.test(w)) {
     return "present (likely)";
   }
+
   if (/(é|aste|ó|amos|asteis|aron|í|iste|ió|imos|isteis|ieron)$/.test(w)) {
     return "preterite (likely)";
   }
+
   if (/(aba|abas|ábamos|abais|aban|ía|ías|íamos|íais|ían)$/.test(w)) {
     return "imperfect (likely)";
   }
@@ -1465,7 +1468,6 @@ function detectSimpleTense(w) {
 
 // Nouns (strict)
 function isNoun(w) {
-  // Strong noun endings — extremely reliable
   const strongNounEndings = [
     "ción","sión","dad","tad","tud","umbre","aje",
     "ez","eza","miento","amiento","imiento",
@@ -1474,15 +1476,10 @@ function isNoun(w) {
 
   if (strongNounEndings.some(e => w.endsWith(e))) return true;
 
-  // Common simple noun endings (safe because we exclude verbs)
-  const safeSimpleEndings = [
-    "a","o","as","os","es"
-  ];
+  const safeSimpleEndings = ["a","o","as","os","es"];
 
-  // Exclude anything that could be a verb
   if (isVerbLike(w)) return false;
 
-  // Exclude function words
   if (
     isPronoun(w) ||
     isArticle(w) ||
@@ -1494,14 +1491,12 @@ function isNoun(w) {
     return false;
   }
 
-  // If it ends in a common noun ending AND is not a verb or function word → noun
   if (safeSimpleEndings.some(e => w.endsWith(e))) return true;
 
-  // Strict mode: unknown words are NOT nouns
   return false;
 }
 
-// Implied subject from verb ending (only for clear verbs)
+// Implied subject from verb ending
 function inferSubjectFromVerb(w) {
   if (!isVerbLike(w)) return null;
 
@@ -1521,7 +1516,7 @@ function updateGrammarInfo(text) {
   const words = rawWords.map(w => normalizeWord(w)).filter(Boolean);
 
   const subjects = [];
-  const verbs = []; // {form, tense}
+  const verbs = []; // { form, tense }
   const nouns = [];
   const adjectives = [];
   const adverbs = [];
@@ -1564,36 +1559,36 @@ function updateGrammarInfo(text) {
       continue;
     }
 
-// Verbs
-if (isVerbLike(wNorm)) {
-  const tense = detectSimpleTense(wNorm);
-  verbs.push({ form: wOrig, tense });
+    // Verbs
+    if (isVerbLike(wNorm)) {
+      const tense = detectSimpleTense(wNorm);
+      verbs.push({ form: wOrig, tense });
 
-  const implied = inferSubjectFromVerb(wNorm);
-  if (implied) {
-    const impliedBase = implied.split(" ")[0].toLowerCase();
-    const hasExplicit = subjects.some(s =>
-      s.toLowerCase().startsWith(impliedBase)
-    );
-    if (!hasExplicit) {
-      addUniqueOrdered(subjects, implied);
+      const implied = inferSubjectFromVerb(wNorm);
+      if (implied) {
+        const impliedBase = implied.split(" ")[0].toLowerCase();
+        const hasExplicit = subjects.some(s =>
+          s.toLowerCase().startsWith(impliedBase)
+        );
+        if (!hasExplicit) {
+          addUniqueOrdered(subjects, implied);
+        }
+      }
+
+      continue;
     }
-  }
 
-  continue;
-}
+    // Nouns
+    if (isNoun(wNorm)) {
+      addUniqueOrdered(nouns, wOrig);
+      continue;
+    }
 
-// Nouns
-if (isNoun(wNorm)) {
-  addUniqueOrdered(nouns, wOrig);
-  continue;
-}
-
-// Adjectives
-if (isAdjective(wNorm)) {
-  addUniqueOrdered(adjectives, wOrig);
-  continue;
-}
+    // Adjectives
+    if (isAdjective(wNorm)) {
+      addUniqueOrdered(adjectives, wOrig);
+      continue;
+    }
 
     // Strict mode: no fallback classification
   }
@@ -1616,10 +1611,13 @@ if (isAdjective(wNorm)) {
     "<b>Prepositions:</b> " + fmt(prepositions) + "<br>" +
     "<b>Conjunctions:</b> " + fmt(conjunctions);
 
-  grammarBody.innerHTML = html;
+  const target = document.getElementById("grammar-body");
+  if (!target) {
+    console.warn("Grammar panel element with id 'grammar-body' not found.");
+    return;
+  }
+  target.innerHTML = html;
 }
-
-
 
   // ---------------------------
   // Click word in output -> vocab + definition
